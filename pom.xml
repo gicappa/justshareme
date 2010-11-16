@@ -17,7 +17,7 @@
                 <artifactId>maven-war-plugin</artifactId>
                 <version>2.1-beta-1</version>
                 <configuration>
-                    <warName>virgilio4</warName>
+                    <warName>justshareme</warName>
                     <webResources>
                         <resource>
                             <filtering>true</filtering>
@@ -27,6 +27,13 @@
                             </includes>
                         </resource>
                     </webResources>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
                 </configuration>
             </plugin>
             <plugin>
@@ -191,6 +198,11 @@
                     <artifactId>commons-logging</artifactId>
                 </exclusion>
             </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>com.google.code.typica</groupId>
+            <artifactId>typica</artifactId>
+            <version>1.7.2</version>
         </dependency>
 
 

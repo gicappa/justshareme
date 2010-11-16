@@ -21,8 +21,8 @@ import java.util.List;
  */
 public class S3 {
 
-    private static final String awsAccessKey = "AKIAIXGK5IRL7GO5672Q";
-    private static final String awsSecretKey = "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";
+    private static final String awsAccessKey = AmazonKeys.awsAccessKey;
+    private static final String awsSecretKey = AmazonKeys.awsSecretKey;
     private static final String BUCKET = "justshareme";
 
     S3Service s3Service;
