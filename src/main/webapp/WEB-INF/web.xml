@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) 2010 Kemen. All rights reserved.
+  -->
+
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+         metadata-complete="true" version="3.0">
+
+    <display-name>Sharme</display-name>
+
+    <context-param>
+        <param-name>app_version</param-name>
+        <param-value>${project.version}</param-value>
+    </context-param>
+
+    <error-page>
+        <error-code>404</error-code>
+        <location>/errors/error-404.jsp</location>
+    </error-page>
+
+    <error-page>
+        <exception-type>java.lang.Exception</exception-type>
+        <location>/errors/error-500.jsp</location>
+    </error-page>
+
+</web-app>
