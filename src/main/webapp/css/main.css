@@ -120,3 +120,7 @@ input.button-primary:hover, button.button-primary:hover, a.button-primary:hover,
     width: 100%;
     margin-top: 15px;
 }
+
+.space_name {
+    color: #ff6c00; 
+}
