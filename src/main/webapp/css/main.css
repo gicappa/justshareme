@@ -164,3 +164,48 @@ input.button-primary:hover, button.button-primary:hover, a.button-primary:hover,
 .item a:hover {
     color: #ff6c00;
 }
+
+#backgroundPopup {
+    display: none;
+    position: fixed;
+    _position: absolute; /* hack for internet explorer 6*/
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background: #000000;
+    border: 1px solid #cecece;
+    z-index: 1;
+}
+
+#popupContact {
+    display: none;
+    position: fixed;
+    _position: absolute; /* hack for internet explorer 6*/
+    height: 550px;
+    width: 408px;
+    background: #FFFFFF;
+    border: 1px solid #cfcfcf;
+    z-index: 2;
+    padding: 12px;
+    font-size: 12px;
+}
+
+#popupContact h1 {
+    text-align: left;
+    font-size: 16px;
+    border-bottom: 1px dotted #D3D3D3;
+    padding-bottom: 2px;
+    margin-bottom: 20px;
+}
+
+#popupContactClose {
+    font-size: 14px;
+    line-height: 14px;
+    right: 6px;
+    top: 4px;
+    position: absolute;
+    color: #000000;
+    font-weight: 700;
+    display: block;
+}

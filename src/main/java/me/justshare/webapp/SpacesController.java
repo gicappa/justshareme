@@ -42,7 +42,7 @@ public class SpacesController {
 	public String handleSpaces(@PathVariable("space") String space, HttpServletRequest request) {
 		logger.debug("Space requested is {0}", space);
 		StorageService storageService = new StorageService();
-		List<SharedItem> itemList = storageService.listSharedItems(space,0);
+		List<SharedItem> itemList = storageService.listSharedItems(space, 0);
 
 		request.setAttribute("space", space);
 		request.setAttribute("sharedItems", itemList);
@@ -59,14 +59,26 @@ public class SpacesController {
 		logger.info("Uploading a file name into {}", space);
 		StorageService storageService = new StorageService();
 
-		if (file.isEmpty())
-			return "failure";
-
 		try {
+
+			if (file.isEmpty())
+				return "failure";
+
 			storageService.store(space, new ByteArrayInputStream(file.getBytes()), filename, description);
+
 		} catch (IOException e) {
 			logger.error("ERROR while uploading a file named " + filename, e);
 		}
+		return "success";
+	}
+
+	@RequestMapping(value = "/status/{space}", method = RequestMethod.POST)
+	public String handleFormUpload(@PathVariable("space") String space,
+								   @RequestParam("description") String description) {
+
+		logger.info("Uploading a file name into {}", space);
+		StorageService storageService = new StorageService();
+		storageService.store(space, null, "status", description);
 		return "success";
 	}
 }
