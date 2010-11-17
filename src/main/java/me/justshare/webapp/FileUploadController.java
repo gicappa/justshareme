@@ -14,10 +14,10 @@ import java.io.IOException;
  * @author Gian Carlo Pace <giancarlo.pace@gmail.com>
  */
 @Controller
-@RequestMapping("/api")
+@RequestMapping("/apasdai")
 public class FileUploadController {
 
-	@RequestMapping(value = "/upload", method = RequestMethod.POST)
+	@RequestMapping(value = "/spadadaces/uasdpload", method = RequestMethod.POST)
 	public String handleFormUpload(@RequestParam("name") String name,
 								   @RequestParam("file") MultipartFile file) {
 		if (!file.isEmpty()) {

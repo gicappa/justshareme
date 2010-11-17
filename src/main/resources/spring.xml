@@ -15,22 +15,12 @@
 
     <!--&lt;!&ndash;<bean class="org.springframework.web.servlet.view.BeanNameViewResolver"/>&ndash;&gt;-->
 
-    <!--<bean id="viewResolver"-->
-    <!--class="org.springframework.web.servlet.view.InternalResourceViewResolver">-->
-    <!--<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>-->
-    <!--<property name="suffix" value=".jsp"/>-->
-    <!--</bean>-->
-
-    <!--<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">-->
-    <!--</bean>-->
     <context:annotation-config/>
 
     <mvc:annotation-driven/>
 
-    <!-- Forwards requests to the "/" resource to the "welcome" view -->
     <mvc:view-controller path="/" view-name="index"/>
 
-    <!-- Resolves view names to protected .jsp resources within the /WEB-INF/views directory -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/jsp/"/>
         <property name="suffix" value=".jsp"/>

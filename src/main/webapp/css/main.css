@@ -37,6 +37,15 @@ body {
 
 }
 
+.share {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    width: 800px;
+    float: right;
+}
+
+}
 .about {
     float: right;
     margin-top: 5px;
@@ -47,7 +56,7 @@ body {
 }
 
 input {
-    font-size: 30px;    
+    font-size: 30px;
     color: #ff6c00;
 }
 
@@ -95,7 +104,7 @@ input.button-primary:hover, button.button-primary:hover, a.button-primary:hover,
     -webkit-border-radius: 15px;
     -moz-border-radius: 15px;
     border-radius: 15px;
-    
+
     border-width: initial;
     border: 1px solid;
     cursor: pointer;
@@ -111,8 +120,9 @@ input.button-primary:hover, button.button-primary:hover, a.button-primary:hover,
 #space {
     width: 320px;
 }
+
 #password {
-    width: 200px;    
+    width: 200px;
 }
 
 #submit {
@@ -122,5 +132,36 @@ input.button-primary:hover, button.button-primary:hover, a.button-primary:hover,
 }
 
 .space_name {
-    color: #ff6c00; 
+    color: #ff6c00;
+}
+
+#upload {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 40px;
+    width: 800px;
+    background-color: #ff6c00;
+    padding: 20px;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    border-radius: 12px;
+    border: medium none;
+    color: white;
+}
+
+.item a {
+    text-decoration: none;
+
+    color: #494949;
+}
+
+.item {
+    background: url('/images/downarrow.png') no-repeat;
+    margin-top: 30px;
+    padding-left: 55px;
+    height: 50px;
+}
+
+.item a:hover {
+    color: #ff6c00;
 }

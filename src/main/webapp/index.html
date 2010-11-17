@@ -3,8 +3,29 @@
 <head>
     <title>justshare.me</title>
     <link href="css/main.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="/uploadify/jquery-1.4.2.min.js"></script>
+    <script type="text/javascript" language="javascript">
+        $(document).ready(function() {
+            $('#space').focus();
+        });
+
+        function createSpace() {
+            $.ajax({url: '/api/spaces/new', type: 'POST', data: { space: $('#space').val(), password: $('#password').val() }, success: handleResult});
+        }
+
+        function handleResult(response) {
+            var result = eval(response);
+            if (!result.success) {
+                alert("Space already exists");
+                return;
+            }
+
+            $(window.location).attr('href', '/api/spaces/' + $('#space').val());
+        }
+    </script>
+
 </head>
-<body onload="document.getElementById('space').focus();">
+<body>
 <div id="header">
     <div id="stripe">
         <a class="about" href="#">About</a>
@@ -14,14 +35,13 @@
     </div>
 
     <div id="body">
-        <form method="POST" action="/api/spaces/new">
-            <div class="heading">create your space</div>
-            <label for="space">http://justshare.me/spaces/</label><input id="space" name="space" type="text" value="">
-            <label for="password">Editing password </label><input id="password" name="password" type="password" value="">
-            <div id="submit">
-                <input type="submit" value="create" class="button-primary">
-            </div>
-        </form>
+        <div class="heading">create your space</div>
+        <label for="space">http://justshare.me/spaces/</label><input id="space" name="space" type="text" value="">
+        <label for="password">Editing password </label><input id="password" name="password" type="password"
+
+        <div id="submit">
+            <input type="submit" value="create" class="button-primary" onclick="createSpace();">
+        </div>
     </div>
     <div id="activespaces">
         <div class="heading">Active Spaces</div>
