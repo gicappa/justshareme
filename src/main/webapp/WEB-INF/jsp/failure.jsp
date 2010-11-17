@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>justshare.me</title>
-    <link href="css/main.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/main.css" rel="stylesheet" type="text/css"/>
 </head>
 <body onload="document.getElementById('space').focus();">
 <div id="header">
