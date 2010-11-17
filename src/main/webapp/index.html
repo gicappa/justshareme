@@ -10,7 +10,14 @@
         });
 
         function createSpace() {
-            $.ajax({url: '/spaces/new', type: 'POST', data: { space: $('#space').val(), password: $('#password').val() }, success: handleResult});
+
+            if ( $('#space').val() == '' || $('#password').val() == '')
+            {
+                $('#duplicateSpace').html('Sorry, you must enter the space name and a password to proceed');
+            }
+
+            else
+                $.ajax({url: '/spaces/new', type: 'POST', data: { space: $('#space').val(), password: $('#password').val() }, success: handleResult});
         }
 
         function handleResult(response) {
