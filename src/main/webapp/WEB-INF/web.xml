@@ -62,7 +62,7 @@
 
     <servlet-mapping>
         <servlet-name>Spring MVC Dispatcher Servlet</servlet-name>
-        <url-pattern>/api/*</url-pattern>
+        <url-pattern>/spaces/*</url-pattern>
     </servlet-mapping>
 
     <error-page>

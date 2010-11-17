@@ -2,7 +2,7 @@ body {
 
     margin: 0;
     font-family: 'Lucida Grande', 'Lucida Sans', Sans, Verdana, sans-serif;
-    font-size: 26px;
+    font-size: 22px;
     color: #494949;
 }
 
@@ -28,9 +28,9 @@ body {
     margin-left: auto;
     margin-right: auto;
     margin-top: 90px;
-    width: 700px;
+    width: 650px;
     background-color: #ffefe5;
-    padding-top: 20px;
+    padding-top: 10px;
     padding-bottom: 20px;
     padding-right: 80px;
     padding-left: 80px;
@@ -59,7 +59,7 @@ body {
 }
 
 input {
-    font-size: 26px;
+    font-size: 22px;
     color: #ff6c00;
 }
 
@@ -76,13 +76,14 @@ input {
 }
 
 .heading {
-    font-size: 32px;
+    font-size: 28px;
     margin-bottom: 30px;
     text-align: center;
+    margin-top: 15px;
 }
 
 .text {
-    font-size: 30px;
+    font-size: 26px;
 }
 
 input.button-primary, button.button-primary, a.button-primary {
@@ -92,7 +93,7 @@ input.button-primary, button.button-primary, a.button-primary {
     background: #ff6c00 url(/images/button-grad.png) repeat-x scroll left top;
     text-shadow: rgba(0, 0, 0, 0.3) 0 -1px 0;
     width: 300px;
-    font-size: 24px;
+    font-size: 22px;
 }
 
 input.button-primary:active, button.button-primary:active, a.button-primary:active {
@@ -114,7 +115,7 @@ input.button-primary:hover, button.button-primary:hover, a.button-primary:hover,
     border: 1px solid;
     cursor: pointer;
     font-family: 'Lucida Grande', Verdana, Arial, 'Bitstream Vera Sans', sans-serif;
-    font-size: 30px;
+    font-size: 26px;
     margin-top: -3px;
     padding: 3px 10px;
     text-decoration: none;
@@ -123,11 +124,11 @@ input.button-primary:hover, button.button-primary:hover, a.button-primary:hover,
 }
 
 #space {
-    width: 240px;
+    width: 300px;
 }
 
 #password {
-    width: 240px;
+    width: 300px;
 }
 
 #submit {

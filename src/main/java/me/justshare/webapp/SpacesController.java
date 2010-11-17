@@ -23,7 +23,6 @@ import java.util.List;
  * @author Gian Carlo Pace <giancarlo.pace@gmail.com>
  */
 @Controller
-@RequestMapping("/spaces")
 public class SpacesController {
 
 	private transient Logger logger = LoggerFactory.getLogger(SpacesController.class);

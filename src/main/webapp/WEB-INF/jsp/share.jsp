@@ -20,7 +20,7 @@
             $('#file_upload').uploadify({
                 'method'    : 'get',
                 'uploader'  : '/uploadify/uploadify.swf',
-                'script'    : '/api/spaces/upload/<c:out value="${space}"/>',
+                'script'    : '/spaces/upload/<c:out value="${space}"/>',
                 'cancelImg' : '/uploadify/cancel.png',
                 'auto'      : false,
                 'multi'     : false,
@@ -66,7 +66,7 @@
             }
 
             if ($('#file_upload').val() == '') {
-                $.ajax({url: '/api/spaces/status/<c:out value="${space}"/>', type: 'POST', data: {description: $('#description').val()}, success: onComplete});
+                $.ajax({url: '/spaces/status/<c:out value="${space}"/>', type: 'POST', data: {description: $('#description').val()}, success: onComplete});
                 return false;
             }
             $('#file_upload').uploadifySettings('scriptData', {'description': $('#description').val()}, true);
@@ -76,7 +76,7 @@
         }
 
         function login() {
-            $.ajax({url: '/api/spaces/login/<c:out value="${space}"/>', type: 'POST', data: {password: $('#password').val()}, success: onLogin});
+            $.ajax({url: '/spaces/login/<c:out value="${space}"/>', type: 'POST', data: {password: $('#password').val()}, success: onLogin});
         }
 
 

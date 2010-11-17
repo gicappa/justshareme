@@ -10,7 +10,7 @@
         });
 
         function createSpace() {
-            $.ajax({url: '/api/spaces/new', type: 'POST', data: { space: $('#space').val(), password: $('#password').val() }, success: handleResult});
+            $.ajax({url: '/spaces/new', type: 'POST', data: { space: $('#space').val(), password: $('#password').val() }, success: handleResult});
         }
 
         function handleResult(response) {
@@ -20,7 +20,7 @@
                 return;
             }
 
-            $(window.location).attr('href', '/api/spaces/' + $('#space').val());
+            $(window.location).attr('href', '/spaces/' + $('#space').val());
         }
     </script>
 
@@ -29,6 +29,7 @@
 <div id="header">
     <div id="stripe">
         <a class="about" href="#">About</a>
+        <a class="about" href="/">Home</a>
     </div>
     <div id="logo">
 
