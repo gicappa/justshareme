@@ -15,7 +15,7 @@
 
         function handleResult(response) {
             var result = eval(response);
-            if (!result.success) {
+            if (!result) {
                 alert("Space already exists");
                 return;
             }
@@ -36,7 +36,7 @@
 
     <div id="body">
         <div class="heading">create your space</div>
-        <label for="space">http://justshare.me/spaces/</label><input id="space" name="space" type="text" value="">
+        <label for="space">http://justshare.me/spaces/</label><input id="space" name="space" type="text" value=""><br/>
         <label for="password">Editing password </label><input id="password" name="password" type="password"/>
 
         <div id="submit">

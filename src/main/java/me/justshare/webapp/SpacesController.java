@@ -54,8 +54,7 @@ public class SpacesController {
 	public String handleFormUpload(@PathVariable("space") String space,
 								   @RequestParam("description") String description,
 								   @RequestParam("Filename") String filename,
-								   @RequestParam("Filedata") MultipartFile file,
-								   HttpServletRequest request) {
+								   @RequestParam("Filedata") MultipartFile file) {
 
 		logger.info("Uploading a file name into {}", space);
 		StorageService storageService = new StorageService();
@@ -70,5 +69,4 @@ public class SpacesController {
 		}
 		return "success";
 	}
-
 }
