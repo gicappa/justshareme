@@ -15,8 +15,8 @@ import java.util.Set;
 public class AmazonSimpleDB {
 
     private static final String DOMAIN = AmazonKeys.DOMAIN;
-
     private SimpleDB sds = new SimpleDB(AmazonKeys.awsAccessKey, AmazonKeys.awsSecretKey, true);
+    private final int PAGESIZE = 15;
 
     public void createSpace(String name, String password) throws SDBException {
         Domain dom = sds.getDomain(DOMAIN);
@@ -83,7 +83,7 @@ public class AmazonSimpleDB {
 
         Domain dom = sds.getDomain(DOMAIN);
 
-        int limit = 10 + page * 10;
+        int limit = PAGESIZE + page * PAGESIZE;
 
         String query = "select output_list from `" + DOMAIN + "` where type = 'item' and space = '" + space + "'" +
                 " and timestamp is not null order by timestamp desc limit " + limit;
@@ -113,7 +113,7 @@ public class AmazonSimpleDB {
             output.add(new SharedItem(fileKey, ct, desc));
         }
 
-        return output;
+        return output.subList(limit - PAGESIZE, output.size());
     }
 
 
