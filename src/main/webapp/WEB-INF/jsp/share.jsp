@@ -99,11 +99,13 @@
 <body>
 <div id="header">
     <div id="stripe">
-        <a class="about" href="#">About</a>
+        <a class="about" href="/spaces/about-justshareme">About</a>
+        <a class="about" href="/">Home</a>
     </div>
     <div id="logo"></div>
 
-    <div class="heading">Space <span class="space_name"><c:out value="${space}"/></span></div>
+    <div class="heading">Space Name: <span class="space_name"><c:out value="${space}"/></span></div>
+    <div class="subheading">URL you can share with others: <strong>http://justshare.me/spaces/${space}</strong></div>
 
     <div id="upload">
         <label for="description">Description </label><input id="description" name="description" type="text" value="">
