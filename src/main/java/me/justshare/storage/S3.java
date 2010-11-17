@@ -24,7 +24,7 @@ public class S3 {
 
     private static final String awsAccessKey = AmazonKeys.awsAccessKey;
     private static final String awsSecretKey = AmazonKeys.awsSecretKey;
-    private static final String BUCKET = "justshareme";
+    private static final String BUCKET = AmazonKeys.DOMAIN;
 
     S3Service s3Service;
 

@@ -6,6 +6,8 @@ package me.justshare.storage;
  */
 public class AmazonKeys {
 
+    public static final String DOMAIN = "justshareme-test";
+
     public static final String awsAccessKey = "AKIAIXGK5IRL7GO5672Q";
     public static final String awsSecretKey = "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";
 }

@@ -14,7 +14,7 @@ import java.util.Set;
  */
 public class AmazonSimpleDB {
 
-    private static final String DOMAIN = "justshareme";
+    private static final String DOMAIN = AmazonKeys.DOMAIN;
 
     private SimpleDB sds = new SimpleDB(AmazonKeys.awsAccessKey, AmazonKeys.awsSecretKey, true);
 
@@ -35,7 +35,7 @@ public class AmazonSimpleDB {
 
         Domain dom = sds.getDomain(DOMAIN);
 
-        QueryWithAttributesResult list = dom.selectItems("select output_list from "+DOMAIN+" where type = 'space'", "", true);
+        QueryWithAttributesResult list = dom.selectItems("select output_list from `"+DOMAIN+"` where type = 'space'", "", true);
         List<String> output = new ArrayList<String>();
 
         for (String s : list.getItems().keySet()) {
@@ -43,6 +43,17 @@ public class AmazonSimpleDB {
                 output.add(s.substring(6));
         }
         return output;
+    }
+
+    public boolean isPasswordCorrect(String space, String password) throws SDBException {
+
+        Domain dom = sds.getDomain(DOMAIN);
+
+        String query = "select output_list from `" + DOMAIN + "` where type = 'space' and name = '" + space + "'" +
+                " and password = '" + password + "'";
+//        System.out.println(query);
+        QueryWithAttributesResult list = dom.selectItems(query, "", true);
+        return !list.getItems().isEmpty();
     }
 
 
@@ -74,10 +85,10 @@ public class AmazonSimpleDB {
 
         int limit = 10 + page * 10;
 
-        String query = "select output_list from " + DOMAIN + " where type = 'item' and space = '" + space + "'" +
+        String query = "select output_list from `" + DOMAIN + "` where type = 'item' and space = '" + space + "'" +
                 " and timestamp is not null order by timestamp desc limit " + limit;
 
-        System.out.println(query);
+//        System.out.println(query);
         
         QueryWithAttributesResult list = dom.selectItems(query, "", true);
 
@@ -110,7 +121,7 @@ public class AmazonSimpleDB {
 
         Domain dom = sds.getDomain(DOMAIN);
 
-        QueryWithAttributesResult list = dom.selectItems("select output_list from "+DOMAIN+" where type = 'space' and name = '"+name+"'", "", true);
+        QueryWithAttributesResult list = dom.selectItems("select output_list from `"+DOMAIN+"` where type = 'space' and name = '"+name+"'", "", true);
         return !list.getItems().isEmpty();
     }
 

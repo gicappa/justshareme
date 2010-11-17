@@ -36,6 +36,14 @@ public class StorageService {
         }
     }
 
+    public boolean isPasswordCorrect(String space, String password) {
+        try {
+            return simpleDb.isPasswordCorrect(space,password);
+        } catch (SDBException e) {
+            throw new StorageException("Cannot check password of space", e);
+        }
+    }
+
 
     public List<String> getSpaces() {
         try {
