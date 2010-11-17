@@ -161,6 +161,7 @@ input.button-primary:hover, button.button-primary:hover, a.button-primary:hover,
 .item {
     background: url('/images/downarrow.png') no-repeat;
     margin-top: 30px;
+    margin-bottom: 15px;
     padding-left: 55px;
     height: 50px;
 }
