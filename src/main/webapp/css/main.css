@@ -225,9 +225,16 @@ input.button-primary:hover, button.button-primary:hover, a.button-primary:hover,
     display: none;
     text-align: center;
     background-color: #ffcfaf;
+}
 
 .fileName {
     color: black;
     font-size: 18px;
+}
 
+.errorMessage {
+    font-size: 20px;
+    color: red;
+    padding-bottom: 10px;
+    padding-left: 10px;
 }

@@ -16,7 +16,7 @@
         function handleResult(response) {
             var result = eval(response);
             if (!result) {
-                alert("Space already exists");
+                $('#duplicateSpace').html('Sorry, there\'s already a space with that name registered. <br/> Please choose another the name');
                 return;
             }
 
@@ -37,6 +37,7 @@
     <div id="body">
         <div class="heading">Create your Space</div>
 
+        <div id="duplicateSpace" class="errorMessage"></div>
         <table>
             <tr>
                 <td><label for="space">http://justshare.me/spaces/</label></td>
