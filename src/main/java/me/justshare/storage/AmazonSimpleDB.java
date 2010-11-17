@@ -126,10 +126,6 @@ public class AmazonSimpleDB {
     }
 
 
-
-
-    
-
     public static void main(String[] args) {
 
         try {

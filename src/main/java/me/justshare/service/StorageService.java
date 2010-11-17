@@ -7,6 +7,7 @@ import me.justshare.storage.S3;
 import me.justshare.storage.Utils;
 import org.jets3t.service.S3ServiceException;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
@@ -56,6 +57,10 @@ public class StorageService {
 
     public void store(String space, InputStream fileInputStream, String fileName, String description) {
         try {
+
+            if ("image/jpeg".equals(Utils.guessContentType(fileName)))
+                fileInputStream = Utils.scaleImageIfNecessary(fileInputStream, 600);
+
             String s3ObjectKey = s3.storeStream(fileName,fileInputStream, space);
             
             simpleDb.addSharedItem(space, s3ObjectKey, Utils.guessContentType(fileName),
@@ -65,6 +70,8 @@ public class StorageService {
             throw new StorageException("Cannot store in S3", e);
         } catch (SDBException e) {
             throw new StorageException("Cannot store in SimpleDb", e);
+        } catch (IOException e) {
+            throw new StorageException("Cannot resize image", e);    
         }
     }
 

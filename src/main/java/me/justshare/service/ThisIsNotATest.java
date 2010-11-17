@@ -24,10 +24,11 @@ public class ThisIsNotATest {
         test(s.listSharedItems(space, 0).size() == 0);
 
         s.store(space, new FileInputStream("/users/fdiotalevi/Desktop/doc.txt"), "doc.txt", "a description");
-        test(s.listSharedItems(space, 0).size() == 1);
+        s.store(space, new FileInputStream("/users/fdiotalevi/Desktop/test.jpg"), "test.jpg", "luna");
+        test(s.listSharedItems(space, 0).size() == 2);
 
-        test(s.listSharedItems(space, 0).get(0).getDescription().equals("a description"));
-        test(s.listSharedItems(space, 0).get(0).getFileKey()!=null);
+        test(s.listSharedItems(space, 0).get(1).getDescription().equals("a description"));
+        test(s.listSharedItems(space, 0).get(1).getFileKey()!=null);
         
     }
 
