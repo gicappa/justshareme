@@ -158,7 +158,7 @@ input.button-primary:hover, button.button-primary:hover, a.button-primary:hover,
     -moz-border-radius: 12px;
     border-radius: 12px;
     border: medium none;
-    color: black;
+    color: white;
 }
 
 .item a {
@@ -237,7 +237,6 @@ input.button-primary:hover, button.button-primary:hover, a.button-primary:hover,
 }
 
 .fileName {
-    color: black;
     font-size: 18px;
 }
 
