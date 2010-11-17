@@ -65,7 +65,7 @@
             }
             disablePopup();
             if ($('#description').val() == '') {
-                alert('The description has to be filled');
+                $('#errorSpace').html('Sorry. You must enter a description');
                 return false;
             }
 
@@ -111,6 +111,8 @@
 
     <div class="heading">Space Name: <span class="space_name"><c:out value="${space}"/></span></div>
     <div class="subheading">URL you can share with others: <strong>http://justshare.me/spaces/${space}</strong></div>
+
+    <div id="errorSpace" class="errorMessage"></div>
 
     <div id="upload">
         <label for="description">Description </label><input id="description" name="description" type="text" value="">
