@@ -63,8 +63,10 @@ public class StorageService {
             if ("image/jpeg".equals(Utils.guessContentType(fileName)))
                 fileInputStream = Utils.scaleImageIfNecessary(fileInputStream, 600);
 
-            String s3ObjectKey = s3.storeStream(fileName,fileInputStream, space);
-            
+            String s3ObjectKey = null;
+            if (fileInputStream != null)
+               s3ObjectKey = s3.storeStream(fileName,fileInputStream, space);
+
             simpleDb.addSharedItem(space, s3ObjectKey, Utils.guessContentType(fileName),
                     description);
 

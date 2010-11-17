@@ -15,7 +15,9 @@ import java.io.InputStream;
 public class Utils {
 
     public static String guessContentType(String name) {
-        if (name.endsWith(".jpg") || name.endsWith(".jpeg"))
+        if (name == null)
+            return "description";
+        else if (name.endsWith(".jpg") || name.endsWith(".jpeg"))
             return "image/jpeg";
         else if (name.endsWith(".png"))
             return "image/x-png";
