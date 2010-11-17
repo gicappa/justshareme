@@ -149,7 +149,7 @@ input.button-primary:hover, button.button-primary:hover, a.button-primary:hover,
     -moz-border-radius: 12px;
     border-radius: 12px;
     border: medium none;
-    color: white;
+    color: black;
 }
 
 .item a {
