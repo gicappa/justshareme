@@ -38,6 +38,7 @@ body {
     -moz-border-radius: 12px;
     border-radius: 12px;
     border: medium none;
+    margin-bottom: 20px;
 
 }
 
@@ -172,11 +173,22 @@ input.button-primary:hover, button.button-primary:hover, a.button-primary:hover,
     margin-top: 30px;
     margin-bottom: 15px;
     padding-left: 55px;
-    height: 50px;
+    min-height: 50px;
 }
 
 .item a:hover {
     color: #ff6c00;
+}
+
+.image {
+    text-align: center;
+}
+
+.description {
+    margin-top: 30px;
+    margin-bottom: 15px;
+    padding-left: 55px;
+    min-height: 50px;    
 }
 
 #backgroundPopup {

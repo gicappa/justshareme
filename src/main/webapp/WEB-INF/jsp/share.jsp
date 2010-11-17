@@ -25,7 +25,7 @@
                 'auto'      : false,
                 'multi'     : false,
                 'onComplete': onComplete,
-                'displayData' : 'speed',                
+                'displayData' : 'speed',
                 'onSelect'  : onSelect});
 
         });
@@ -35,7 +35,7 @@
         }
 
         var loggedIn = Boolean(<c:out value="${sessionScope['LOGGED_IN']}"/>+'');
-        var uploadingFile = false; 
+        var uploadingFile = false;
         function checkLogin() {
 
             centerPopup();
@@ -73,7 +73,7 @@
                 $.ajax({url: '/spaces/status/<c:out value="${space}"/>', type: 'POST', data: {description: $('#description').val()}, success: onComplete});
                 return false;
             }
-            
+
             $('#file_upload').uploadifySettings('scriptData', {'description': $('#description').val()}, true);
             $('#file_upload').uploadifyUpload();
 
@@ -87,7 +87,7 @@
 
         function onLogin(result) {
             if (eval(result)) {
-                loggedIn = true;                
+                loggedIn = true;
                 share();
             } else {
                 loggedIn = false;
@@ -121,7 +121,18 @@
     <div class="share"><input id="share" type="button" value="Share" class="button-primary" onclick="share()"></div>
     <div id="body">
         <c:forEach items="${sharedItems}" var="item">
-            <div class="item"><a href="${item.fileUrl}"><c:out value="${item.description}"/></a></div>
+            <c:choose>
+                <c:when test='${item.isDescription}'>
+                    <div class="description"><c:out value="${item.description}"/></div>
+                </c:when>
+                <c:when test='${item.isImage}'>
+                    <div class="image"><img src="${item.fileUrl}" alt="description"></div>
+                </c:when>
+                <c:otherwise>
+                    <div class="item"><a href="${item.fileUrl}"><c:out value="${item.description}"/></a></div>
+                </c:otherwise>
+            </c:choose>
+
         </c:forEach>
     </div>
 

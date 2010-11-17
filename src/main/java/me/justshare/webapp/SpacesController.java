@@ -119,7 +119,7 @@ public class SpacesController {
 		}
 
 		StorageService storageService = new StorageService();
-		storageService.store(space, null, "status", description);
+		storageService.store(space, null, null, description);
 		return "success";
 	}
 }

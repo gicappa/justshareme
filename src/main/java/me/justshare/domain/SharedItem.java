@@ -22,6 +22,14 @@ public class SharedItem {
         return fileKey;
     }
 
+	public Boolean getIsDescription() {
+		return getContentType() != null && getContentType().startsWith("description");
+	}
+
+	public Boolean getIsImage() {
+		return getContentType() != null && getContentType().startsWith("image");
+	}
+
     public String getContentType() {
         return contentType;
     }
