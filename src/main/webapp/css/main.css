@@ -214,3 +214,8 @@ input.button-primary:hover, button.button-primary:hover, a.button-primary:hover,
     font-weight: 700;
     display: block;
 }
+
+.fileName {
+    color: black;
+    font-size: 18px;
+}
