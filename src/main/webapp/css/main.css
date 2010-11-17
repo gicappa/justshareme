@@ -42,10 +42,9 @@ body {
     margin-right: auto;
     margin-top: 10px;
     width: 800px;
-    float: right;
+    text-align: right;
 }
 
-}
 .about {
     float: right;
     margin-top: 5px;

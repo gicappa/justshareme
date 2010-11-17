@@ -15,21 +15,22 @@
             $('#description').val('');
         });
 
-        $(function() {$('#file_upload').uploadify({
-            'method'    : 'get',
-            'uploader'  : '/uploadify/uploadify.swf',
-            'script'    : '/api/spaces/upload/<c:out value="${space}"/>',
-            'cancelImg' : '/uploadify/cancel.png',
-            'auto'      : true,
-            'multi'     : false,
-            'onComplete': onComplete,
-            'displayData' : 'speed',
-            'scriptData': {'description': $('#description').val()}
-        });
+        $(function() {
+            $('#file_upload').uploadify({
+                'method'    : 'get',
+                'uploader'  : '/uploadify/uploadify.swf',
+                'script'    : '/api/spaces/upload/<c:out value="${space}"/>',
+                'cancelImg' : '/uploadify/cancel.png',
+                'auto'      : false,
+                'multi'     : false,
+                'onComplete': onComplete,
+                'displayData' : 'speed',
+                'scriptData': {'description': $('#description').val()}
             });
+        });
 
         function uploadFile() {
-            $('#file_upload').scriptData = {'description': $('#description').val()};
+            $('#file_upload').uploadifySettings('scriptData', {'description': $('#description').val()}, true);
             $('#file_upload').uploadifyUpload();
         }
 
@@ -51,7 +52,7 @@
         <label for="description">Description </label><input id="description" name="description" type="text" value="">
         <input id="file_upload" name="file_upload" type="file"/>
     </div>
-    <input type="button" value="Share" class="button-primary" onclick="uploadFile()">
+    <div class="share"><input type="button" value="Share" class="button-primary" onclick="uploadFile()"></div>
     <div id="body">
         <c:forEach items="${sharedItems}" var="item">
             <div class="item"><a href="${item.fileUrl}"><c:out value="${item.description}"/></a></div>
