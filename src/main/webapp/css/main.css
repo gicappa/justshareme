@@ -2,7 +2,7 @@ body {
 
     margin: 0;
     font-family: 'Lucida Grande', 'Lucida Sans', Sans, Verdana, sans-serif;
-    font-size: 30px;
+    font-size: 26px;
     color: #494949;
 }
 
@@ -20,15 +20,15 @@ body {
 #logo {
     background-image: url('/images/justshareme-logo.gif');
     margin: auto;
-    width: 437px;
-    height: 215px;
+    width: 300px;
+    height: 148px;
 }
 
 #body {
     margin-left: auto;
     margin-right: auto;
     margin-top: 90px;
-    width: 800px;
+    width: 700px;
     background-color: #ffefe5;
     padding-top: 20px;
     padding-bottom: 20px;
@@ -59,7 +59,7 @@ body {
 }
 
 input {
-    font-size: 30px;
+    font-size: 26px;
     color: #ff6c00;
 }
 
@@ -76,7 +76,7 @@ input {
 }
 
 .heading {
-    font-size: 38px;
+    font-size: 32px;
     margin-bottom: 30px;
     text-align: center;
 }
@@ -87,10 +87,12 @@ input {
 
 input.button-primary, button.button-primary, a.button-primary {
     border-color: #ff6c00;
-    font-weight: bold;
+    font-weight: normal;
     color: #fff;
     background: #ff6c00 url(/images/button-grad.png) repeat-x scroll left top;
     text-shadow: rgba(0, 0, 0, 0.3) 0 -1px 0;
+    width: 300px;
+    font-size: 24px;
 }
 
 input.button-primary:active, button.button-primary:active, a.button-primary:active {
@@ -233,7 +235,7 @@ input.button-primary:hover, button.button-primary:hover, a.button-primary:hover,
 }
 
 .errorMessage {
-    font-size: 20px;
+    font-size: 18px;
     color: red;
     padding-bottom: 10px;
     padding-left: 10px;
