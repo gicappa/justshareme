@@ -186,18 +186,18 @@ input.button-primary:hover, button.button-primary:hover, a.button-primary:hover,
     display: none;
     position: fixed;
     _position: absolute; /* hack for internet explorer 6*/
-    height: 550px;
+    height: 250px;
     width: 408px;
     background: #FFFFFF;
     border: 1px solid #cfcfcf;
     z-index: 2;
     padding: 12px;
-    font-size: 12px;
+    font-size: 20px;
 }
 
 #popupContact h1 {
     text-align: left;
-    font-size: 16px;
+    font-size: 28px;
     border-bottom: 1px dotted #D3D3D3;
     padding-bottom: 2px;
     margin-bottom: 20px;
@@ -212,4 +212,15 @@ input.button-primary:hover, button.button-primary:hover, a.button-primary:hover,
     color: #000000;
     font-weight: 700;
     display: block;
+}
+
+#popupContact #password {
+    width: 100%;
+}
+
+#loginFailure {
+    color: red;
+    display: none;
+    text-align: center;
+    background-color: #ffcfaf;
 }

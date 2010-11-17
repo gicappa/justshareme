@@ -30,38 +30,65 @@
             });
         });
 
-        $(document).ready(function() {
-            $("#share").click(function() {
-                centerPopup();
-                loadPopup();
-                return false;
-            });
+        var loggedIn = Boolean(<c:out value="${sessionScope['LOGGED_IN']}"/>+'');
 
-            $("#popupContactClose").click(function() {
-                disablePopup();
-            });
+        function checkLogin() {
 
-            $("#backgroundPopup").click(function() {
-                disablePopup();
-            });
+            centerPopup();
+            loadPopup();
+            $('#password').focus();
+            return false;
+        }
 
-            $(document).keypress(function(e) {
-                if (e.keyCode == 27 && popupStatus == 1) {
-                    disablePopup();
-                }
-            });
+        $("#popupContactClose").click(function() {
+            disablePopup();
         });
 
+        $("#backgroundPopup").click(function() {
+            disablePopup();
+        });
+
+        $(document).keypress(function(e) {
+            if (e.keyCode == 27 && popupStatus == 1) {
+                disablePopup();
+            }
+        });
 
         function share() {
+            if (!loggedIn) {
+                checkLogin();
+                return false;
+            }
 
+            if ($('#description').val() == '') {
+                alert('The description has to be filled');
+                return false;
+            }
 
             if ($('#file_upload').val() == '') {
                 $.ajax({url: '/api/spaces/status/<c:out value="${space}"/>', type: 'POST', data: {description: $('#description').val()}, success: onComplete});
-                return;
+                return false;
             }
             $('#file_upload').uploadifySettings('scriptData', {'description': $('#description').val()}, true);
             $('#file_upload').uploadifyUpload();
+
+            return true;
+        }
+
+        function login() {
+            $.ajax({url: '/api/spaces/login/<c:out value="${space}"/>', type: 'POST', data: {password: $('#password').val()}, success: onLogin});
+        }
+
+
+        function onLogin(result) {
+            if (eval(result)) {
+                loggedIn = true;
+                disablePopup();
+                share();
+            } else {
+                loggedIn = false;
+                $('#loginFailure').show('slow');                
+            }
         }
 
         function onComplete(event) {
@@ -93,9 +120,9 @@
         <a id="popupContactClose">x</a>
 
         <h1>Password is required</h1>
-
-        <label for="password">Password </label><input type="password" value="" name="password" id="password">
-
+        <div id="loginFailure">Password is wrong</div>
+        <label for="password">Password </label><input type="password" name="password" id="password" value="">
+        <input type="button" value="Log in" id="submit" name="submit" class="button-primary" onclick="login()">
     </div>
     <div id="backgroundPopup"></div>
 
