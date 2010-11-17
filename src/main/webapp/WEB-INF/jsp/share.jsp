@@ -20,18 +20,22 @@
             $('#file_upload').uploadify({
                 'method'    : 'get',
                 'uploader'  : '/uploadify/uploadify.swf',
-                'script'    : '/spaces/upload/<c:out value="${space}"/>',
+                'script'    : '/spaces/upload/<c:out value="${space}"/>;jsessionid=<%=request.getSession().getId()%>',
                 'cancelImg' : '/uploadify/cancel.png',
                 'auto'      : false,
                 'multi'     : false,
                 'onComplete': onComplete,
-                'displayData' : 'speed',
-                'scriptData': {'description': $('#description').val()}
-            });
+                'displayData' : 'speed',                
+                'onSelect'  : onSelect});
+
         });
 
-        var loggedIn = Boolean(<c:out value="${sessionScope['LOGGED_IN']}"/>+'');
+        function onSelect(event, ID, fileObj) {
+            uploadingFile = true;
+        }
 
+        var loggedIn = Boolean(<c:out value="${sessionScope['LOGGED_IN']}"/>+'');
+        var uploadingFile = false; 
         function checkLogin() {
 
             centerPopup();
@@ -59,16 +63,17 @@
                 checkLogin();
                 return false;
             }
-
+            disablePopup();
             if ($('#description').val() == '') {
                 alert('The description has to be filled');
                 return false;
             }
 
-            if ($('#file_upload').val() == '') {
+            if (!uploadingFile) {
                 $.ajax({url: '/spaces/status/<c:out value="${space}"/>', type: 'POST', data: {description: $('#description').val()}, success: onComplete});
                 return false;
             }
+            
             $('#file_upload').uploadifySettings('scriptData', {'description': $('#description').val()}, true);
             $('#file_upload').uploadifyUpload();
 
@@ -82,16 +87,16 @@
 
         function onLogin(result) {
             if (eval(result)) {
-                loggedIn = true;
-                disablePopup();
+                loggedIn = true;                
                 share();
             } else {
                 loggedIn = false;
-                $('#loginFailure').show('slow');                
+                $('#loginFailure').show('slow');
             }
         }
 
         function onComplete(event) {
+            uploadingFile = false;
             window.location.reload();
         }
     </script>
@@ -122,6 +127,7 @@
         <a id="popupContactClose">x</a>
 
         <h1>Password is required</h1>
+
         <div id="loginFailure">Password is wrong</div>
         <label for="password">Password </label><input type="password" name="password" id="password" value="">
         <input type="button" value="Log in" id="submit" name="submit" class="button-primary" onclick="login()">

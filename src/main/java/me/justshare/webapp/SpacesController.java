@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -26,34 +28,38 @@ import java.util.List;
 public class SpacesController {
 
 	private transient Logger logger = LoggerFactory.getLogger(SpacesController.class);
+	private static final String LOGGED_IN = "LOGGED_IN";
 
 	@RequestMapping(value = "/new", method = RequestMethod.POST)
-	public String handleSpaces(@RequestParam("space") String space, @RequestParam("password") String password) {
+	public String handleSpaces(@RequestParam("space") String space,
+							   @RequestParam("password") String password) {
 		logger.debug("New space creation requested is {}", space);
 		StorageService storageService = new StorageService();
 		if (storageService.existSpace(space)) {
 			return "failure";
 		}
 		storageService.createSpace(space, password);
+
 		return "success";
 	}
 
 	@RequestMapping(value = "/login/{space}", method = RequestMethod.POST)
-	public String login(@PathVariable("space") String space, @RequestParam("password") String password, HttpServletRequest request) {
+	public ModelAndView login(@PathVariable("space") String space,
+							  @RequestParam("password") String password,
+							  HttpSession session, SessionStatus status) {
 		logger.info("Logging into space {}", space);
 		StorageService storageService = new StorageService();
 
 		if (!storageService.existSpace(space)) {
-			return "failure";
+			return new ModelAndView("failure");
 		}
 
 		if (!storageService.isPasswordCorrect(space, password)) {
-			return "failure";
+			return new ModelAndView("failure");
 		}
-
-		HttpSession session = request.getSession(true);
-		session.setAttribute("LOGGED_IN", true);
-		return "success";
+		session.setAttribute(LOGGED_IN, "true");
+		status.setComplete();
+		return new ModelAndView("success");
 	}
 
 	@RequestMapping(value = "/{space}", method = RequestMethod.GET)
@@ -71,12 +77,12 @@ public class SpacesController {
 								   @RequestParam("description") String description,
 								   @RequestParam("Filename") String filename,
 								   @RequestParam("Filedata") MultipartFile file,
-								   HttpServletRequest request) {
+								   HttpSession session) {
 
 		logger.info("Uploading a file name into {}", space);
 		StorageService storageService = new StorageService();
-		
-		if (!isLoggedIn(request)) {
+
+		if (session.getAttribute(LOGGED_IN) == null || !session.getAttribute(LOGGED_IN).equals("true")) {
 			return "failure";
 		}
 
@@ -93,22 +99,22 @@ public class SpacesController {
 		return "success";
 	}
 
-	private boolean isLoggedIn(HttpServletRequest request) {
-		return loggedIn(request) != null && ((Boolean) loggedIn(request));
+	private boolean isLoggedIn(HttpSession session) {
+		return loggedIn(session) != null && loggedIn(session).equals("true");
 	}
 
-	private Object loggedIn(HttpServletRequest request) {
-		return request.getSession().getAttribute("LOGGED_IN");
+	private Object loggedIn(HttpSession session) {
+		return session.getAttribute(LOGGED_IN);
 	}
 
 	@RequestMapping(value = "/status/{space}", method = RequestMethod.POST)
 	public String handleFormUpload(@PathVariable("space") String space,
 								   @RequestParam("description") String description,
-								   HttpServletRequest request) {
+								   HttpSession session) {
 
 		logger.info("Uploading a file name into {}", space);
 
-		if (!isLoggedIn(request)) {
+		if (!isLoggedIn(session)) {
 			return "failure";
 		}
 

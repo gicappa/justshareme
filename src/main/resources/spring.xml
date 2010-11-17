@@ -12,14 +12,11 @@
        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
     <context:component-scan base-package="me.justshare.webapp"/>
-
-    <!--&lt;!&ndash;<bean class="org.springframework.web.servlet.view.BeanNameViewResolver"/>&ndash;&gt;-->
-
     <context:annotation-config/>
 
-    <mvc:annotation-driven/>
+    <!--<mvc:annotation-driven/>-->
 
-    <mvc:view-controller path="/" view-name="index"/>
+    <!--<mvc:view-controller path="/" view-name="index"/>-->
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/jsp/"/>
@@ -28,4 +25,5 @@
 
     <bean id="multipartResolver"
           class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
+
 </beans>
