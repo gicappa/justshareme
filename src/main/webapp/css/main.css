@@ -247,3 +247,10 @@ input.button-primary:hover, button.button-primary:hover, a.button-primary:hover,
     padding-bottom: 10px;
     padding-left: 10px;
 }
+
+.notice {
+    font-size: 14px;
+    font-weight: bold;
+    padding: 8px;
+    text-align: center;
+}
