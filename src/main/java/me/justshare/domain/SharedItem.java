@@ -1,5 +1,7 @@
 package me.justshare.domain;
 
+import me.justshare.storage.AmazonKeys;
+
 /**
  * User: filippo@diotalevi.com
  * Date: Nov 17, 2010
@@ -27,4 +29,9 @@ public class SharedItem {
     public String getDescription() {
         return description;
     }
+
+    public String getFileUrl() {
+        return fileKey == null ? null : "http://"+ AmazonKeys.DOMAIN + ".s3.amazonaws.com/" + fileKey;
+    }
+    
 }
