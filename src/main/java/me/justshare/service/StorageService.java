@@ -20,6 +20,8 @@ public class StorageService {
     private AmazonSimpleDB simpleDb = new AmazonSimpleDB();
     private S3 s3 = new S3();
 
+    private Cache cache = Cache.getInstance();
+
     public void createSpace(String space, String password) {
         try {
             simpleDb.createSpace(space, password);
@@ -65,6 +67,8 @@ public class StorageService {
             
             simpleDb.addSharedItem(space, s3ObjectKey, Utils.guessContentType(fileName),
                     description);
+
+            cache.invalidateItemsFor(space);
             
         } catch (S3ServiceException e) {
             throw new StorageException("Cannot store in S3", e);
@@ -78,7 +82,15 @@ public class StorageService {
 
     public List<SharedItem> listSharedItems(String space, int page) {
         try {
-            return simpleDb.getSharedItems(space, page);
+            if (cache.hasItemsFor(space, page))
+                return cache.getItemsFor(space, page);
+            else
+            {
+                List<SharedItem> sharedItems = simpleDb.getSharedItems(space, page);
+                cache.storeItems(space, page, sharedItems);
+                return sharedItems;
+            }
+
         } catch (SDBException e) {
             throw new StorageException("Cannot retrieve shared items", e);
         }
