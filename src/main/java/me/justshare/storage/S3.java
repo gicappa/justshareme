@@ -1,5 +1,6 @@
 package me.justshare.storage;
 
+import org.apache.log4j.Logger;
 import org.jets3t.service.S3Service;
 import org.jets3t.service.S3ServiceException;
 import org.jets3t.service.acl.AccessControlList;
@@ -27,10 +28,16 @@ public class S3 {
 
     S3Service s3Service;
 
-    public S3() throws S3ServiceException
+    private Logger log = Logger.getLogger(this.getClass());
+
+    public S3()
     {
         AWSCredentials awsCredentials = new AWSCredentials(awsAccessKey, awsSecretKey);
-        s3Service = new RestS3Service(awsCredentials);
+        try {
+            s3Service = new RestS3Service(awsCredentials);
+        } catch (S3ServiceException e) {
+            log.error("Cannot create connection to S3", e);
+        }
     }
 
     public void listBuckets() throws S3ServiceException
@@ -54,17 +61,19 @@ public class S3 {
         s3Service.putObject(photoBucket, obj);
     }
 
-    public void storeStream(String key, InputStream stream, String space) throws S3ServiceException
+    public String storeStream(String key, InputStream stream, String space) throws S3ServiceException
     {
         S3Bucket photoBucket = getApplicationBucket();
 
         S3Object obj = new S3Object();
         obj.setAcl(AccessControlList.REST_CANNED_PUBLIC_READ);
         obj.setDataInputStream(stream);
-        obj.setKey(space + "/"+System.currentTimeMillis()+"-"+key);
+        String s3ObjectKey = space + "/" + System.currentTimeMillis() + "-" + key;
+        obj.setKey(s3ObjectKey);
         obj.setBucketName(BUCKET);
         obj.setContentType(guessContentType(key));
         s3Service.putObject(photoBucket, obj);
+        return s3ObjectKey;
     }
 
     private S3Bucket getApplicationBucket() throws S3ServiceException {
@@ -74,16 +83,7 @@ public class S3 {
 
 
     private String guessContentType(String name) {
-        if (name.endsWith(".jpg") || name.endsWith(".jpeg"))
-            return "image/jpeg";
-        else if (name.endsWith(".png"))
-            return "image/x-png";
-        else if (name.endsWith(".gif"))
-            return "image/gif";
-        else
-            return "text/plain";
-
-
+        return Utils.guessContentType(name);
     }
 
     public static void main(String[] args) throws S3ServiceException {
