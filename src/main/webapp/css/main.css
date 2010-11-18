@@ -176,7 +176,7 @@ textarea {
 
 .item {
     padding-top: 15px;
-    min-height: 50px;
+    min-height: 30px;
     padding-bottom: 15px;
     border-bottom: 1px #ff6c00 dashed;
     font-size: 20px;
@@ -184,7 +184,7 @@ textarea {
 .file {
     background: url('/images/downarrow.png') no-repeat;
     padding-left: 55px;
-    min-height: 50px;
+    min-height: 30px;
 }
 .item a:hover {
     color: #ff6c00;
@@ -197,7 +197,7 @@ textarea {
 .description {
     background: url('/images/bulb.png') no-repeat;
     padding-left: 55px;
-    min-height: 50px;
+    min-height: 30px;
 }
 
 #backgroundPopup {
