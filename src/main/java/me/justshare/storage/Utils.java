@@ -1,5 +1,7 @@
 package me.justshare.storage;
 
+import org.apache.log4j.Logger;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -13,6 +15,8 @@ import java.io.InputStream;
  * Date: Nov 17, 2010
  */
 public class Utils {
+
+    private static Logger logger = Logger.getLogger(Utils.class);
 
 	public static String guessContentType(String name) {
 		if (name == null)
@@ -33,33 +37,41 @@ public class Utils {
 
 
 	public static InputStream scaleImageIfNecessary(InputStream is, int maxwidth) throws IOException {
-		BufferedImage sourceImage = ImageIO.read(is);
 
-		int origWidth = sourceImage.getWidth();
+        try
+        {
+            BufferedImage sourceImage = ImageIO.read(is);
 
-		if (!(origWidth > maxwidth))
-			return is;
+            int origWidth = sourceImage.getWidth();
 
-		float scale = (float) maxwidth / (float) origWidth;
-		int targetWidth = (int) (sourceImage.getWidth() * scale);
-		int targetHeight = (int) (sourceImage.getHeight() * scale);
+            if (!(origWidth > maxwidth))
+                return is;
 
-		return scaleTo(sourceImage, targetWidth, targetHeight);
+            float scale = (float) maxwidth / (float) origWidth;
+            int targetWidth = (int) (sourceImage.getWidth() * scale);
+            int targetHeight = (int) (sourceImage.getHeight() * scale);
+
+            return scaleTo(sourceImage, targetWidth, targetHeight);
+        }
+        catch (Throwable t) {
+            logger.error("Cannot scale image", t);
+            return is;
+        }
 	}
 
 	private static InputStream scaleTo(BufferedImage sourceImage, int targetWidth, int targetHeight) throws IOException {
-		BufferedImage scaledImage = new BufferedImage(targetWidth,
-				targetHeight,
-				BufferedImage.TYPE_INT_RGB);
-		Graphics2D g2d = scaledImage.createGraphics();
-		g2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION,
-				RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+            BufferedImage scaledImage = new BufferedImage(targetWidth,
+                    targetHeight,
+                    BufferedImage.TYPE_INT_RGB);
+            Graphics2D g2d = scaledImage.createGraphics();
+            g2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION,
+                    RenderingHints.VALUE_INTERPOLATION_BILINEAR);
 
-		g2d.drawImage(sourceImage, 0, 0, targetWidth, targetHeight, null);
+            g2d.drawImage(sourceImage, 0, 0, targetWidth, targetHeight, null);
 
-		File tempFile = File.createTempFile("justshareme", "image");
-		ImageIO.write(scaledImage, "jpeg", tempFile);
+            File tempFile = File.createTempFile("justshareme", "image");
+            ImageIO.write(scaledImage, "jpeg", tempFile);
 
-		return new FileInputStream(tempFile);
+            return new FileInputStream(tempFile);
 	}
 }
