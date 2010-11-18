@@ -115,7 +115,9 @@
     <div id="errorSpace" class="errorMessage"></div>
 
     <div id="upload">
-        <label for="description">Description </label><input id="description" name="description" type="text" value="">
+        <label for="description">Description </label>
+        <%--<input id="description" name="description" type="text" value="">--%>
+        <textarea id="description" style="width:100%"></textarea>
         <input id="file_upload" name="file_upload" type="file"/>
     </div>
     <div class="share"><input id="share" type="button" value="Share" class="button-primary" onclick="share()"></div>
