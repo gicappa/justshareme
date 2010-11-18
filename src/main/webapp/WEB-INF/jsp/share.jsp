@@ -36,7 +36,8 @@
             uploadingFile = true;
         }
 
-        var loggedIn = Boolean(<c:out value="${sessionScope['LOGGED_IN']}"/>+'');
+        <c:set var="loggedInKey" value="LOGGED_IN_${space}"/>
+        var loggedIn = Boolean(${sessionScope[loggedInKey]});
         var uploadingFile = false;
 
         

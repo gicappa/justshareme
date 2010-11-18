@@ -28,7 +28,7 @@ import java.util.List;
 public class SpacesController {
 
 	private transient Logger logger = LoggerFactory.getLogger(SpacesController.class);
-	private static final String LOGGED_IN = "LOGGED_IN";
+//	private static final String LOGGED_IN = "LOGGED_IN";
 
 	@RequestMapping(value = "/new", method = RequestMethod.POST)
 	public String handleSpaces(@RequestParam("space") String space,
@@ -57,7 +57,7 @@ public class SpacesController {
 		if (!storageService.isPasswordCorrect(space, password)) {
 			return new ModelAndView("failure");
 		}
-		session.setAttribute(LOGGED_IN, "true");
+		session.setAttribute(loggedIn(space), "true");
 		status.setComplete();
 		return new ModelAndView("success");
 	}
@@ -82,7 +82,7 @@ public class SpacesController {
 		logger.info("Uploading a file name into {}", space);
 		StorageService storageService = new StorageService();
 
-		if (session.getAttribute(LOGGED_IN) == null || !session.getAttribute(LOGGED_IN).equals("true")) {
+		if (session.getAttribute(loggedIn(space)) == null || !session.getAttribute(loggedIn(space)).equals("true")) {
 			return "failure";
 		}
 
@@ -99,12 +99,12 @@ public class SpacesController {
 		return "success";
 	}
 
-	private boolean isLoggedIn(HttpSession session) {
-		return loggedIn(session) != null && loggedIn(session).equals("true");
+	private boolean isLoggedIn(HttpSession session, String space) {
+		return loggedIn(session,space) != null && loggedIn(session,space).equals("true");
 	}
 
-	private Object loggedIn(HttpSession session) {
-		return session.getAttribute(LOGGED_IN);
+	private Object loggedIn(HttpSession session, String space) {
+		return session.getAttribute(loggedIn(space));
 	}
 
 	@RequestMapping(value = "/status/{space}", method = RequestMethod.POST)
@@ -114,7 +114,7 @@ public class SpacesController {
 
 		logger.info("Uploading a file name into {}", space);
 
-		if (!isLoggedIn(session)) {
+		if (!isLoggedIn(session, space)) {
 			return "failure";
 		}
 
@@ -122,4 +122,9 @@ public class SpacesController {
 		storageService.store(space, null, null, description);
 		return "success";
 	}
+
+    private String loggedIn(String space) {
+        return "LOGGED_IN_" + space;
+    }
+
 }
