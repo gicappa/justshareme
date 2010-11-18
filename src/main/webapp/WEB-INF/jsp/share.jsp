@@ -115,7 +115,9 @@
         <a class="about" href="/spaces/about-justshareme">About</a>
         <a class="about" href="/">Home</a>
     </div>
-    <div id="logo"></div>
+    <div id="logo">
+        <img src="/images/justshareme-logo.gif" />
+    </div>    
 
     <div class="heading">Space Name: <span class="space_name"><c:out value="${space}"/></span></div>
     <div class="subheading">URL you can share with others: <strong>http://justshare.me/spaces/${space}</strong></div>
@@ -138,7 +140,7 @@
                     <div class="description">${js:prettify(item.description)}</div>
                 </c:when>
                 <c:when test='${item.isImage}'>
-                    <div class="image"><img src="${item.fileUrl}" alt="description"></div>
+                    <div class="image"><img src="${item.fileUrl}"></div>
                     <div class="description">${js:prettify(item.description)}</div>
                 </c:when>
                 <c:otherwise>

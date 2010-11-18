@@ -18,10 +18,12 @@ body {
 }
 
 #logo {
-    background-image: url('/images/justshareme-logo.gif');
+    /*background-image: url('/images/justshareme-logo.gif');*/
+    background: url('/images/share_what_else.png') no-repeat right 35px;
     margin: auto;
-    width: 300px;
+    width: 820px;
     height: 148px;
+    
 }
 
 #body {
