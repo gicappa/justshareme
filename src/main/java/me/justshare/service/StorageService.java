@@ -60,7 +60,7 @@ public class StorageService {
     public void store(String space, InputStream fileInputStream, String fileName, String description) {
         try {
 
-            if ("image/jpeg".equals(Utils.guessContentType(fileName)))
+            if (isAnImage(fileName))
                 fileInputStream = Utils.scaleImageIfNecessary(fileInputStream, 600);
 
             String s3ObjectKey = null;
@@ -79,6 +79,14 @@ public class StorageService {
         } catch (IOException e) {
             throw new StorageException("Cannot resize image", e);    
         }
+    }
+
+    private boolean isAnImage(String fileName) {
+        return "image/jpeg".equals(Utils.guessContentType(fileName))
+               ||
+             "image/gif".equals(Utils.guessContentType(fileName))
+               ||
+             "image/x-png".equals(Utils.guessContentType(fileName));
     }
 
 
