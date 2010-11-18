@@ -1,5 +1,5 @@
 <%@page language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
+<%@ taglib prefix="c"           uri="http://java.sun.com/jsp/jstl/core"  %>
 <%@ taglib prefix="js"        uri="http://justshare.me/elfunctions/js/1.0"%>
 <!DOCTYPE html>
 <html>
