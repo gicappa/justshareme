@@ -95,25 +95,45 @@ public class AmazonSimpleDB {
         Map<String, List<ItemAttribute>> map = list.getItems();
 
         for (String itemKey : map.keySet()) {
-            String desc = null;
-            String ct = null;
-            String fileKey = null;
 
-            Item item = dom.getItem(itemKey);
-
-            for (ItemAttribute itemAttribute : item.getAttributes()) {
-                if (itemAttribute.getName().equals("fileKey"))
-                    fileKey = itemAttribute.getValue();
-                else if (itemAttribute.getName().equals("contentType"))
-                    ct = itemAttribute.getValue();
-                else if (itemAttribute.getName().equals("description"))
-                    desc = itemAttribute.getValue();
-
+            SharedItem sharedItem = null;
+            for (int i = 0; i < 10; i++)
+            {
+                sharedItem = extractSharedItem(dom, itemKey);
+                
+                if (!sharedItem.isEmpty()) {
+                    output.add(sharedItem);
+                    try {
+                        Thread.sleep(200l);
+                    } catch (InterruptedException e) {
+                        //
+                    }
+                    break;
+                }
             }
-            output.add(new SharedItem(fileKey, ct, desc));
         }
 
         return output.subList(limit - PAGESIZE, output.size());
+    }
+
+    private SharedItem extractSharedItem(Domain dom, String itemKey) throws SDBException {
+        String desc = null;
+        String ct = null;
+        String fileKey = null;
+
+        Item item = dom.getItem(itemKey);
+
+        for (ItemAttribute itemAttribute : item.getAttributes()) {
+            if (itemAttribute.getName().equals("fileKey"))
+                fileKey = itemAttribute.getValue();
+            else if (itemAttribute.getName().equals("contentType"))
+                ct = itemAttribute.getValue();
+            else if (itemAttribute.getName().equals("description"))
+                desc = itemAttribute.getValue();
+        }
+
+        SharedItem sharedItem = new SharedItem(fileKey, ct, desc);
+        return sharedItem;
     }
 
 

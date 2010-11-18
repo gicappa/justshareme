@@ -41,5 +41,9 @@ public class SharedItem {
     public String getFileUrl() {
         return fileKey == null ? null : "http://"+ AmazonKeys.DOMAIN + ".s3.amazonaws.com/" + fileKey;
     }
+
+    public boolean isEmpty() {
+        return fileKey == null && contentType == null && description == null;
+    }
     
 }
