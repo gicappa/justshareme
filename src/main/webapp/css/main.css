@@ -175,13 +175,16 @@ textarea {
 }
 
 .item {
+    padding-top: 15px;    
+    min-height: 50px;
+    padding-bottom: 15px;
+    border-bottom: 1px #ff6c00 dashed;    
+}
+.file {
     background: url('/images/downarrow.png') no-repeat;
-    margin-top: 30px;
-    margin-bottom: 15px;
     padding-left: 55px;
     min-height: 50px;
 }
-
 .item a:hover {
     color: #ff6c00;
 }
@@ -191,8 +194,7 @@ textarea {
 }
 
 .description {
-    margin-top: 30px;
-    margin-bottom: 15px;
+    background: url('/images/bulb.png') no-repeat;
     padding-left: 55px;
     min-height: 50px;    
 }
@@ -271,9 +273,4 @@ textarea {
     font-weight: bold;
     padding: 8px;
     text-align: center;
-}
-
-hr {
-    color: #ff6c00;
-    
 }

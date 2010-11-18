@@ -122,7 +122,9 @@
     </div>
     <div class="share"><input id="share" type="button" value="Share" class="button-primary" onclick="share()"></div>
     <div id="body">
+
         <c:forEach items="${sharedItems}" var="item">
+        <div class="item">
             <c:choose>
                 <c:when test='${item.isDescription}'>
                     <div class="description"><c:out value="${item.description}"/></div>
@@ -132,11 +134,12 @@
                     <div class="description"><c:out value="${item.description}"/></div>
                 </c:when>
                 <c:otherwise>
-                    <div class="item"><a href="${item.fileUrl}"><c:out value="${item.description}"/></a></div>
+                    <div class="file"><a href="${item.fileUrl}"><c:out value="${item.description}"/></a></div>
                 </c:otherwise>
             </c:choose>
-                <hr/>
-        </c:forEach>
+            </div>
+            </c:forEach>
+        </div>
     </div>
 
     <div id="popupContact">
