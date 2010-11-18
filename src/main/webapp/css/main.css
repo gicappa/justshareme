@@ -113,6 +113,12 @@ input.button-primary:hover, button.button-primary:hover, a.button-primary:hover,
     color: #ffede2;
 }
 
+textarea {
+    color: #ff6c00;
+    font-size: 18px;
+    height: 80px;
+}
+
 .button-primary {
     -webkit-border-radius: 15px;
     -moz-border-radius: 15px;
@@ -265,4 +271,9 @@ input.button-primary:hover, button.button-primary:hover, a.button-primary:hover,
     font-weight: bold;
     padding: 8px;
     text-align: center;
+}
+
+hr {
+    color: #ff6c00;
+    
 }

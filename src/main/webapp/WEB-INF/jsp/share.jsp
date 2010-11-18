@@ -129,12 +129,13 @@
                 </c:when>
                 <c:when test='${item.isImage}'>
                     <div class="image"><img src="${item.fileUrl}" alt="description"></div>
+                    <div class="description"><c:out value="${item.description}"/></div>
                 </c:when>
                 <c:otherwise>
                     <div class="item"><a href="${item.fileUrl}"><c:out value="${item.description}"/></a></div>
                 </c:otherwise>
             </c:choose>
-
+                <hr/>
         </c:forEach>
     </div>
 
