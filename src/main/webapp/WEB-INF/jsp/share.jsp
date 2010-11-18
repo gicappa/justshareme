@@ -1,5 +1,6 @@
 <%@page language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
+<%@ taglib prefix="js"        uri="http://justshare.me/elfunctions/js/1.0"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -134,14 +135,14 @@
         <div class="item">
             <c:choose>
                 <c:when test='${item.isDescription}'>
-                    <div class="description"><c:out value="${item.description}"/></div>
+                    <div class="description">${js:prettify(item.description)}</div>
                 </c:when>
                 <c:when test='${item.isImage}'>
                     <div class="image"><img src="${item.fileUrl}" alt="description"></div>
-                    <div class="description"><c:out value="${item.description}"/></div>
+                    <div class="description">${js:prettify(item.description)}</div>
                 </c:when>
                 <c:otherwise>
-                    <div class="file"><a href="${item.fileUrl}"><c:out value="${item.description}"/></a></div>
+                    <div class="file"><a href="${item.fileUrl}">${js:prettify(item.description)}</a></div>
                 </c:otherwise>
             </c:choose>
             </div>
