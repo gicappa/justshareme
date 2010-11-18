@@ -83,8 +83,8 @@ public class StorageService {
 
     private boolean isAnImage(String fileName) {
         return "image/jpeg".equals(Utils.guessContentType(fileName))
-               ||
-             "image/gif".equals(Utils.guessContentType(fileName))
+//               ||
+//             "image/gif".equals(Utils.guessContentType(fileName))
                ||
              "image/x-png".equals(Utils.guessContentType(fileName));
     }
