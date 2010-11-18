@@ -121,6 +121,7 @@
 
     <div class="heading">Space Name: <span class="space_name"><c:out value="${space}"/></span></div>
     <div class="subheading">URL you can share with others: <strong>http://justshare.me/spaces/${space}</strong></div>
+    <div class="subheading">Share a photo, a file or just some text!</div>
 
     <div id="errorSpace" class="errorMessage"></div>
 
@@ -144,7 +145,10 @@
                     <div class="description">${js:prettify(item.description)}</div>
                 </c:when>
                 <c:otherwise>
-                    <div class="file"><a href="${item.fileUrl}">${js:prettify(item.description)}</a></div>
+                    <div class="file"><a href="${item.fileUrl}">${js:prettify(item.description)}</a>
+
+                    <br/><a href="${item.fileUrl}" class="download">(Click to download)</a>
+                    </div>
                 </c:otherwise>
             </c:choose>
             </div>
