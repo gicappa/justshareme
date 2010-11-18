@@ -225,6 +225,20 @@ textarea {
     font-size: 20px;
 }
 
+#waitingWheel {
+    display: none;
+    position: fixed;
+    _position: absolute; /* hack for internet explorer 6*/
+    /*height: 250px;*/
+    /*width: 408px;*/
+    /*background: #FFFFFF;*/
+    /*border: 1px solid #cfcfcf;*/
+    z-index: 2;
+    /*padding: 12px;*/
+    /*font-size: 20px;*/
+}
+
+
 #popupContact h1 {
     text-align: left;
     font-size: 28px;

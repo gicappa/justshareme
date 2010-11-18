@@ -16,6 +16,7 @@
             $('#description').val('');
         });
 
+        
         $(function() {
             $('#file_upload').uploadify({
                 'method'    : 'get',
@@ -36,8 +37,9 @@
 
         var loggedIn = Boolean(<c:out value="${sessionScope['LOGGED_IN']}"/>+'');
         var uploadingFile = false;
-        function checkLogin() {
 
+        
+        function checkLogin() {
             centerPopup();
             loadPopup();
             $('#password').focus();
@@ -50,6 +52,7 @@
 
         $("#backgroundPopup").click(function() {
             disablePopup();
+            disableWaiting();
         });
 
         $(document).keypress(function(e) {
@@ -64,11 +67,14 @@
                 return false;
             }
             disablePopup();
+
             if ($('#description').val() == '') {
                 $('#errorSpace').html('Sorry. You must enter a description');
                 return false;
             }
 
+            loadWaiting();
+            
             if (!uploadingFile) {
                 $.ajax({url: '/spaces/status/<c:out value="${space}"/>', type: 'POST', data: {description: $('#description').val()}, success: onComplete});
                 return false;
@@ -96,6 +102,7 @@
         }
 
         function onComplete(event) {
+            disableWaiting();
             uploadingFile = false;
             window.location.reload();
         }
@@ -152,7 +159,9 @@
         <input type="button" value="Log in" id="submit" name="submit" class="button-primary" onclick="login()">
     </div>
     <div id="backgroundPopup"></div>
-
+    <div id="waitingWheel">
+        <img src="/images/ajax-loader.gif">
+    </div>
 </div>
 </body>
 </html>
