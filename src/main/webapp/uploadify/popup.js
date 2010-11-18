@@ -125,7 +125,7 @@ function centerWaitingPopup(){
 	var popupHeight = $("#waitingWheel").height();
 	var popupWidth = $("#waitingWheel").width();
 	//centering
-	$("#popupContact").css({
+	$("#waitingWheel").css({
 		"position": "absolute",
 		"top": windowHeight/2-popupHeight/2,
 		"left": windowWidth/2-popupWidth/2
